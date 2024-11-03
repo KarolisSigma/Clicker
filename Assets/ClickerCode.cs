@@ -24,6 +24,7 @@ public class ClickerCode : MonoBehaviour
             clicks++;
             UI.instance.updateUI(clicks);
             transform.DOScale(5, duration).ChangeStartValue(scale * Vector3.one).SetEase(ease);
+            AudioSource.pitch = Random.Range(0.5f, 1.5f);
             AudioSource.Play();
     }
 }
