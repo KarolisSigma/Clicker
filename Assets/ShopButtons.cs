@@ -8,9 +8,15 @@ public class ShopButtons : MonoBehaviour
     public TextMeshProUGUI pricetxt;
     public TextMeshProUGUI counttxt;
 
-    public void UpdateUI(int count, int price){
+    public TextMeshProUGUI cookieprice;
+
+    public void UpdateUI(int count, int price) {
         pricetxt.text = "Price: " + price;
         counttxt.text = count.ToString();
-    }   
+    }
+
+    public void cookiebtn(int price) { 
+        cookieprice.text = "Price: $"+price.ToString();
+    }
 
 }

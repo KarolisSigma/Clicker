@@ -4,9 +4,13 @@ using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UIElements;
 
 public class ClickerCode : MonoBehaviour
 {
+    public List<GameObject> updates;
+    private int update;
+
     public int clicks;
     public AudioSource AudioSource;
     public ParticleSystem effect;
@@ -25,13 +29,37 @@ public class ClickerCode : MonoBehaviour
 
     void Start()
     {
+        clicks = PlayerPrefs.GetInt("clicks");
+
         StartCoroutine(CPS());
         cl2 = 0;
-    }
+        multiplier = 1;
+        multiplier = PlayerPrefs.GetInt("multiplier");
+        PlayerPrefs.SetInt("multiplier", 1);
+        updateModel();
 
+    }
+    public void updateModel()
+    {
+        update = PlayerPrefs.GetInt("multiplier") - 1;
+        int a = 0;
+        if (update > updates.Count - 1)
+        {
+            a = updates.Count - 1;
+        }
+        else
+        {
+            a = update;
+        }
+        foreach (GameObject g in updates)
+        {
+            g.SetActive(false);
+        }
+        updates[a].SetActive(true);
+    }
     void OnMouseDown()  
     {  
-        cl2++;
+        cl2+=1*multiplier;
 
         clicks+=1*multiplier;
         UI.instance.updateUI(clicks);
@@ -66,5 +94,10 @@ public class ClickerCode : MonoBehaviour
         }
 
     }
-    
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt("clicks", clicks);
+        PlayerPrefs.Save();
+    }
+
 }

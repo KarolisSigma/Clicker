@@ -12,14 +12,22 @@ public class Shop : MonoBehaviour
     public int gcount;
     public int gcps=1;
     public int cookTime = 2;
-    public ParticleSystem effect2;
+    //public ParticleSystem effect2;
+
+
+    private float cprice;
 
     private ClickerCode clickerCode;
 
     void Start(){
+        
+        cprice = PlayerPrefs.GetFloat("cprice");
         clickerCode = FindAnyObjectByType<ClickerCode>();
         StartCoroutine(grandmaCook());
+        gcount = PlayerPrefs.GetInt("gcount");
+        gprice = PlayerPrefs.GetFloat("gprice");
         btn.UpdateUI(gcount, (int)MathF.Ceiling(gprice));
+        btn.cookiebtn((int)cprice);
     }
 
     public void BuyGranny(){
@@ -40,8 +48,20 @@ public class Shop : MonoBehaviour
 
 
     public void upgradeCookie() {
-        clickerCode.multiplier = 2;
+        if (clickerCode.clicks >= cprice)
+        {
+            clickerCode.clicks -= (int)cprice;
 
+            cprice *= 3f;
+            btn.cookiebtn((int)cprice);
+            PlayerPrefs.SetFloat("cprice", cprice);
+            PlayerPrefs.SetInt("multiplier", PlayerPrefs.GetInt("multiplier")+1);
+            clickerCode.multiplier = PlayerPrefs.GetInt("multiplier");
+            clickerCode.updateModel();
+
+            PlayerPrefs.Save();
+
+        }
     }
 
 
@@ -51,7 +71,7 @@ public class Shop : MonoBehaviour
 
             clickerCode.clicks +=gcount*gcps*cookTime;
             UI.instance.updateUI(clickerCode.clicks);
-            effect2.Emit(gcount * gcps * cookTime);
+            clickerCode.effect.Emit(gcount * gcps * cookTime);
         }
     }
 }

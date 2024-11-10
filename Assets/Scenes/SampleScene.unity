@@ -6018,6 +6018,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &976043234 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5031687626068085072, guid: fc11fad2911658e46b9d1ff58062f9e4, type: 3}
+  m_PrefabInstance: {fileID: 1952936275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &995274012
 GameObject:
   m_ObjectHideFlags: 0
@@ -6210,6 +6215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pricetxt: {fileID: 1969734366}
   counttxt: {fileID: 723402844}
+  cookieprice: {fileID: 436755769}
 --- !u!114 &998814134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6351,8 +6357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 60, y: 0}
-  m_SizeDelta: {x: 75, y: 75}
+  m_AnchoredPosition: {x: 50, y: 0}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1256625389
 MonoBehaviour:
@@ -6367,14 +6373,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1e5d61cf46683bc4fb4656aad4d34716, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d4a3d87b1d8c6947af0df3636343835, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6666,7 +6672,6 @@ MonoBehaviour:
   gcount: 0
   gcps: 1
   cookTime: 1
-  effect2: {fileID: 387997632}
 --- !u!114 &1649224203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6706,7 +6711,6 @@ GameObject:
   - component: {fileID: 1716476933}
   - component: {fileID: 1716476932}
   - component: {fileID: 1716476931}
-  - component: {fileID: 1716476930}
   m_Layer: 5
   m_Name: Upgrade
   m_TagString: Untagged
@@ -6736,20 +6740,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1716476930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716476928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78c5b28046d27d548ab660df8ffdb226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pricetxt: {fileID: 436755769}
-  counttxt: {fileID: 0}
 --- !u!114 &1716476931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6809,7 +6799,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1649224202}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuyGranny
+        m_MethodName: upgradeCookie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7038,6 +7028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ebad7cb1a61e9b49ae3a23acc0602d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updates:
+  - {fileID: 976043234}
+  - {fileID: 6162910017530603876}
   clicks: 0
   AudioSource: {fileID: 1942489837}
   effect: {fileID: 1966070773}
@@ -7220,6 +7213,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fc11fad2911658e46b9d1ff58062f9e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5031687626068085072, guid: fc11fad2911658e46b9d1ff58062f9e4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fc11fad2911658e46b9d1ff58062f9e4, type: 3}
       propertyPath: m_Name
